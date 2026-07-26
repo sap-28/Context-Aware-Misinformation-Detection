@@ -1,12 +1,19 @@
-project/
-├── data/
-├── notebooks/          <- Colab notebooks (EDA, training) copied here for reference
-├── models/              <- exported .pkl and DistilBERT model files
+├── notebooks/
+│   └── experiments.ipynb        # your Colab work: EDA, model comparisons, training
 ├── src/
-│   ├── db_connector.py
-│   ├── preprocessing.py
-│   ├── ml_classifier.py
-│   ├── genai_explainer.py
-│   └── app.py           <- Streamlit main file with 3 tabs
+│   ├── preprocessing.py         # text cleaning, metadata feature engineering
+│   ├── classical_model.py       # TF-IDF + LogReg/SVM train + predict functions
+│   ├── distilbert_model.py      # fine-tuning + inference functions
+│   ├── rag_pipeline.py          # embeddings, FAISS index, retrieve_evidence()
+│   └── llm_verdict.py           # Groq/Ollama call + prompt template
+├── models/
+│   ├── tfidf_vectorizer.pkl
+│   ├── classical_model.pkl
+│   └── distilbert/               # saved fine-tuned model folder (or load from HF Hub)
+├── data/
+│   └── liar_dataset/             # or a script that downloads it
+├── app.py                        # Streamlit app — imports from src/, ties it together
 ├── requirements.txt
-└── README.md
+├── README.md
+└── .streamlit/
+    └── config.toml               # optional theming
